@@ -5,7 +5,9 @@ module TerminalNotifier
     GUARD_ICON = File.join(ICONS_PATH, 'Guard.icns')
 
     def self.osx_version
-      Gem::Version.new(`sw_vers -productVersion`.strip)
+      Gem::Version.new(
+        ENV['HOST_OSX_VERSION'] || `sw_vers -productVersion`.strip
+      )
     end
 
     def self.terminal_notifier_version
